@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class ShapeSwitcher : MonoBehaviour
 {
     public enum Shape { Cube, Sphere, Pyramid }
     public Shape currentShape;
+
+    public static event Action<Shape> OnShapeChanged;
 
     public GameObject shapeHolder;
     public Mesh sphereMesh;
@@ -21,7 +24,7 @@ public class ShapeSwitcher : MonoBehaviour
 
     void Start()
     {
-        SwitchShape(Shape.Cube);
+        //SwitchShape(Shape.Cube);
     }
 
 
@@ -44,6 +47,8 @@ public class ShapeSwitcher : MonoBehaviour
 
     void SwitchShape(Shape newShape)
     {
+       // if (currentShape == newShape) return;
+
         currentShape = newShape;
         var meshFilter = shapeHolder.GetComponent<MeshFilter>();
 
@@ -72,7 +77,10 @@ public class ShapeSwitcher : MonoBehaviour
                 pyramidCollider.convex = true;
                 pyramidCollider.enabled = true;
                 break;
-                
+
         }
+
+        //Invokes the event when shape is changed
+        OnShapeChanged?.Invoke(newShape); 
     }
 }
