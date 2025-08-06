@@ -17,6 +17,11 @@ public class PyramidMeshCreator
             new Vector3(-0.5f, 0, -0.5f)  // back-left
         };
 
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            vertices[i] -= new Vector3(0, 0.5f, 0);
+        }
+
         int[] triangles = new int[]
         {
             0, 1, 2, // front
