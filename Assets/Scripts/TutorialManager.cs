@@ -20,7 +20,7 @@ public class TutorialManager : MonoBehaviour
 
     void OnDisable()
     {
-        ShapeSwitcher.OnShapeChanged -= HandleShapeChanged;       
+        ShapeSwitcher.OnShapeChanged -= HandleShapeChanged;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -85,5 +85,13 @@ public class TutorialManager : MonoBehaviour
         {
             correctShapeChanged = true;
         }
+    }
+
+    public void EndOfTutorial()
+    {
+        //Display end of tutorial message.
+        tutorialMessage.text = "Well done, you have completed the tutorial. Now the real test!";
+        tutorialMessage.gameObject.SetActive(true);
+        playerMovement.enabled = false;
     }
 }

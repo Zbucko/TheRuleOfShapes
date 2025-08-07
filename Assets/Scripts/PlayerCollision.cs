@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     public ShapeSwitcher shape;
-    public TextMeshProUGUI tutorialMessage;
+    public TutorialManager tutorialManager;
     private void OnTriggerEnter(Collider collision)
     {
         ObstacleShape obstacle = collision.GetComponent<ObstacleShape>();
@@ -15,17 +15,22 @@ public class PlayerCollision : MonoBehaviour
 
         if (obstacle.requiredShape != shape.currentShape)
         {
-            tutorialMessage.text = "Oops, try again!";
             FindAnyObjectByType<GameManager>().GameOver();
         }
     }
 
-    
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Obstacle")
         {
+            //Restart the level.
             FindAnyObjectByType<GameManager>().GameOver();
-        }       
+        }
+        else if (collision.collider.tag == "Finish")
+        {
+            //Display end of tutorial message.
+            tutorialManager.EndOfTutorial();
+        }     
     }
 }
