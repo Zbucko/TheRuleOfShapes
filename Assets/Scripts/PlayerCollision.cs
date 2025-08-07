@@ -1,20 +1,21 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
     public ShapeSwitcher shape;
+    public TextMeshProUGUI tutorialMessage;
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("UDARIO");
         ObstacleShape obstacle = collision.GetComponent<ObstacleShape>();
         if (obstacle == null)
         {
-            Debug.LogWarning("Null je");
             return;
         }
 
         if (obstacle.requiredShape != shape.currentShape)
         {
+            tutorialMessage.text = "Oops, try again!";
             FindAnyObjectByType<GameManager>().GameOver();
         }
     }
