@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.ProBuilder.Shapes;
+using UnityEngine.SceneManagement;
 using static ShapeSwitcher;
 
 public class TutorialManager : MonoBehaviour
@@ -48,16 +49,19 @@ public class TutorialManager : MonoBehaviour
         correctShapeChanged = false;
         yield return new WaitUntil(() => correctShapeChanged);
 
+        //Step 2: Ask player to change to Sphere.
         tutorialMessage.text = "Great! Now press 2 to change to sphere!";
 
         correctShapeChanged = false;
         yield return new WaitUntil(() => correctShapeChanged);
 
+        //Step 3: Ask player to change to Pyramid.
         tutorialMessage.text = "Awesome! Now press 3 to change to pyramid!";
 
         correctShapeChanged = false;
         yield return new WaitUntil(() => correctShapeChanged);
 
+        //Step 4: Explain the movement in the game.
         tutorialMessage.text = "Use left and right arrow keys to move.";
         tutorialMessage.gameObject.SetActive(true);
 
@@ -65,6 +69,7 @@ public class TutorialManager : MonoBehaviour
 
         tutorialMessage.text = "Well done! Now pass this simple level to complete the tutorial!";
 
+        //Start the run.
         yield return new WaitForSeconds(2f);
 
         tutorialMessage.gameObject.SetActive(false);
@@ -73,6 +78,7 @@ public class TutorialManager : MonoBehaviour
 
     private void HandleShapeChanged(ShapeSwitcher.Shape newShape)
     {
+        //Check if correct shape is chosen in tutorial
         if (tutorialMessage.text.Contains("cube") && newShape == ShapeSwitcher.Shape.Cube)
         {
             correctShapeChanged = true;
@@ -93,5 +99,12 @@ public class TutorialManager : MonoBehaviour
         tutorialMessage.text = "Well done, you have completed the tutorial. Now the real test!";
         tutorialMessage.gameObject.SetActive(true);
         playerMovement.enabled = false;
+        //Return to main menu after finishing the tutorial.
+        Invoke("ReturnToMainMenu", 3);
+    }
+
+    private void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
