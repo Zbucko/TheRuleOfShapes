@@ -1,19 +1,48 @@
+using System.Threading;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
-    public PlayerMovement playerMovement;
+    [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] float speedIncreaseInterval = 1f;
+    [SerializeField] float speedIncreaseAmount = 6f;
+
+    public Canvas gameOverScreen;
     public float restartDelay = 1.25f;
+    private float timer = 0;
+
+    void Start()
+    {
+        gameOverScreen.enabled = false;
+        
+    }
+    void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer >= speedIncreaseInterval)
+        {
+            playerMovement.forwardSpeed += speedIncreaseAmount;
+            timer = 0f;
+        }
+    }
     public void GameOver()
     {
         //Logic for UI, restart function called next.
         playerMovement.enabled = false;
-        Invoke("Restart", restartDelay);
+        gameOverScreen.enabled = true;
+        FindAnyObjectByType<SegmentGenerationManager>().enabled = false;
     }
 
-    void Restart()
+    public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

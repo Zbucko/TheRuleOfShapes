@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float startingSpeed = 2;
     public float forwardSpeed = 2;
     public float sidewaysSpeed = 3;
 

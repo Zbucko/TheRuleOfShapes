@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     public ShapeSwitcher shape;
-    public TutorialManager tutorialManager;
     private void OnTriggerEnter(Collider collision)
     {
         ObstacleShape obstacle = collision.GetComponent<ObstacleShape>();
@@ -30,7 +29,7 @@ public class PlayerCollision : MonoBehaviour
         else if (collision.collider.tag == "Finish")
         {
             //Display end of tutorial message.
-            tutorialManager.EndOfTutorial();
+            FindAnyObjectByType<TutorialManager>().EndOfTutorial();
         }     
     }
 }
