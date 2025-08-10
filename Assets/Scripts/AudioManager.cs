@@ -6,6 +6,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource collisionFX;
     [SerializeField] AudioSource backgroundMusic;
     [SerializeField] AudioSource gameOverMusic;
+    [SerializeField] AudioSource powerLostFX;
+    [SerializeField] AudioSource powerCollectFX;
 
     public void PlayShapeChange()
     {
@@ -21,5 +23,15 @@ public class AudioManager : MonoBehaviour
     {
         backgroundMusic.Stop();
         gameOverMusic.Play();
+    }
+
+    public void PowerLost()
+    {
+        powerLostFX.Play();
+    }
+
+    public void PowerCollect()
+    {
+        powerCollectFX.Play();
     }
 }

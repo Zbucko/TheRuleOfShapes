@@ -8,19 +8,19 @@ public class ShapeSwitcher : MonoBehaviour
 
     public static event Action<Shape> OnShapeChanged;
 
-    public GameObject shapeHolder;
-    public Mesh sphereMesh;
-    public Mesh cubeMesh;
-    public Mesh pyramidMesh;
+    [SerializeField] GameObject shapeHolder;
+    [SerializeField] Mesh sphereMesh;
+    [SerializeField] Mesh cubeMesh;
+    [SerializeField] Mesh pyramidMesh;
 
     public Color sphereColor = Color.red;
     public Color cubeColor = Color.blue;
     public Color pyramidColor = Color.green;
 
-    public MeshRenderer meshRenderer;
-    public SphereCollider sphereCollider;
-    public BoxCollider cubeCollider;
-    public MeshCollider pyramidCollider;
+    [SerializeField] MeshRenderer meshRenderer;
+    [SerializeField] SphereCollider sphereCollider;
+    [SerializeField] BoxCollider cubeCollider;
+    [SerializeField] MeshCollider pyramidCollider;
 
     [SerializeField] AudioManager audioManager;
 
@@ -47,7 +47,7 @@ public class ShapeSwitcher : MonoBehaviour
         }
     }
 
-    void SwitchShape(Shape newShape)
+    public void SwitchShape(Shape newShape)
     {
        // if (currentShape == newShape) return;
 

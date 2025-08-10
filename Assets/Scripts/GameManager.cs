@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        FindAnyObjectByType<ShapeSwitcher>().SwitchShape(ShapeSwitcher.Shape.Cube);
         gameOverScreen.enabled = false;
         
     }
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
         {
             playerMovement.enabled = false;
             gameOverScreen.enabled = true;
+            FindAnyObjectByType<ScoreManager>().doubleScoreText.enabled = false;
             FindAnyObjectByType<SegmentGenerationManager>().enabled = false;
             CheckHighScore();
             FindAnyObjectByType<AudioManager>().GameOverMusic();

@@ -9,11 +9,11 @@ using static ShapeSwitcher;
 
 public class TutorialManager : MonoBehaviour
 {
-    public PlayerMovement playerMovement;
-    public ShapeSwitcher shapeSwitcher;
-    public TextMeshProUGUI tutorialMessage;
+    [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] ShapeSwitcher shapeSwitcher;
+    [SerializeField] TextMeshProUGUI tutorialMessage;
 
-    public AudioSource endTutorialFX;
+    [SerializeField] AudioSource endTutorialFX;
     private bool correctShapeChanged = false;
     void OnEnable()
     {

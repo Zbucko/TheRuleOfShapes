@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public ShapeSwitcher shape;
+    [SerializeField] ShapeSwitcher shape;
     [SerializeField] AudioManager audioManager;
     private void OnTriggerEnter(Collider collision)
     {
@@ -32,6 +32,6 @@ public class PlayerCollision : MonoBehaviour
         {
             //Display end of tutorial message.
             FindAnyObjectByType<TutorialManager>().EndOfTutorial();
-        }     
+        } 
     }
 }
