@@ -7,6 +7,14 @@ public class ScoreManager : MonoBehaviour
     public float Score { get; private set; }
     [SerializeField] PlayerMovement player;
     [SerializeField] float baseMultiplier = 1f;
+
+    public int highScore = 0;
+    public bool changedScore = false;
+
+    void Start()
+    {
+        highScore = PlayerPrefs.GetInt("highScore", 0);
+    }
     void Update()
     {
         if (player.enabled)
@@ -14,6 +22,17 @@ public class ScoreManager : MonoBehaviour
             float speedFactor = player.forwardSpeed / player.startingSpeed;
             Score += baseMultiplier * speedFactor * Time.deltaTime;
             scoreText.text = Mathf.FloorToInt(Score).ToString();
+        }
+    }
+
+    public void NewHighScore()
+    {
+        if (Score > highScore)
+        {
+            highScore = Mathf.FloorToInt(Score);
+            PlayerPrefs.SetInt("highScore", highScore);
+            PlayerPrefs.Save();
+            changedScore = true; 
         }
     }
 }

@@ -1,31 +1,39 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
+    [SerializeField] AudioSource clickFX;
     public void StartGame()
     {
-        SceneManager.LoadScene(2);
+        StartCoroutine(PlaySound(2));
+      
     }
 
     public void StartTutorial()
     {
-        SceneManager.LoadScene(1);
+        StartCoroutine(PlaySound(1));
     }
 
     public void Exit()
     {
-        Application.Quit();
+        StartCoroutine(PlaySound(3));
+    }
+
+    IEnumerator PlaySound(int sceneNum)
+    {
+        clickFX.Play();
+        yield return new WaitForSeconds(1f);
+        if (sceneNum == 3)
+        {
+            Application.Quit();
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneNum);
+        }
+        
     }
 
 }

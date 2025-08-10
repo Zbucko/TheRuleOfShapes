@@ -22,6 +22,8 @@ public class ShapeSwitcher : MonoBehaviour
     public BoxCollider cubeCollider;
     public MeshCollider pyramidCollider;
 
+    [SerializeField] AudioManager audioManager;
+
     void Start()
     {
         //SwitchShape(Shape.Cube);
@@ -79,7 +81,7 @@ public class ShapeSwitcher : MonoBehaviour
                 break;
 
         }
-
+        audioManager.PlayShapeChange();
         //Invokes the event when shape is changed
         OnShapeChanged?.Invoke(newShape); 
     }

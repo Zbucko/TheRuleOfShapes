@@ -7,8 +7,9 @@ using UnityEngine.SocialPlatforms.Impl;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] PlayerMovement playerMovement;
-    [SerializeField] float speedIncreaseInterval = 1f;
-    [SerializeField] float speedIncreaseAmount = 6f;
+    [SerializeField] float speedIncreaseInterval = 5f;
+    [SerializeField] float speedIncreaseAmount = 0.5f;
+    [SerializeField] TextMeshProUGUI highScoreText;
 
     public Canvas gameOverScreen;
     public float restartDelay = 1.25f;
@@ -30,10 +31,26 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
-        //Logic for UI, restart function called next.
         playerMovement.enabled = false;
         gameOverScreen.enabled = true;
         FindAnyObjectByType<SegmentGenerationManager>().enabled = false;
+        CheckHighScore();
+        FindAnyObjectByType<AudioManager>().GameOverMusic();
+
+    }
+
+    void CheckHighScore()
+    {
+        ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
+        scoreManager.NewHighScore();
+        if (scoreManager.changedScore)
+        {
+            highScoreText.text = "NEW HIGH SCORE: " + scoreManager.scoreText.text+"\nCongratulations!";
+        }
+        else
+        {
+            highScoreText.text = "HIGH SCORE: " + scoreManager.highScore.ToString();
+        }
     }
 
     public void Restart()

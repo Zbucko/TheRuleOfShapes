@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     public ShapeSwitcher shape;
+    [SerializeField] AudioManager audioManager;
     private void OnTriggerEnter(Collider collision)
     {
         ObstacleShape obstacle = collision.GetComponent<ObstacleShape>();
@@ -24,6 +25,7 @@ public class PlayerCollision : MonoBehaviour
         if (collision.collider.tag == "Obstacle")
         {
             //Restart the level.
+            audioManager.PlayCollision();
             FindAnyObjectByType<GameManager>().GameOver();
         }
         else if (collision.collider.tag == "Finish")
