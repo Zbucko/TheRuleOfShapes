@@ -13,6 +13,7 @@ public class TutorialManager : MonoBehaviour
     public ShapeSwitcher shapeSwitcher;
     public TextMeshProUGUI tutorialMessage;
 
+    public AudioSource endTutorialFX;
     private bool correctShapeChanged = false;
     void OnEnable()
     {
@@ -99,6 +100,7 @@ public class TutorialManager : MonoBehaviour
         tutorialMessage.text = "Well done, you have completed the tutorial. Now the real test!";
         tutorialMessage.gameObject.SetActive(true);
         playerMovement.enabled = false;
+        endTutorialFX.Play();
         //Return to main menu after finishing the tutorial.
         Invoke("ReturnToMainMenu", 3);
     }

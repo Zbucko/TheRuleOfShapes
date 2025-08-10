@@ -31,12 +31,27 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            TutorialGameOver();
+        }
+        else
+        {
+            playerMovement.enabled = false;
+            gameOverScreen.enabled = true;
+            FindAnyObjectByType<SegmentGenerationManager>().enabled = false;
+            CheckHighScore();
+            FindAnyObjectByType<AudioManager>().GameOverMusic();
+        }
+        
+
+    }
+
+    public void TutorialGameOver()
+    {
         playerMovement.enabled = false;
         gameOverScreen.enabled = true;
-        FindAnyObjectByType<SegmentGenerationManager>().enabled = false;
-        CheckHighScore();
         FindAnyObjectByType<AudioManager>().GameOverMusic();
-
     }
 
     void CheckHighScore()
