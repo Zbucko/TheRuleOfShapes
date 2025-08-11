@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float startingSpeed = 2;
     public float forwardSpeed = 2;
-    public float sidewaysSpeed = 3;
+    public float sidewaysSpeed = 3.5f;
 
     public float leftLimit = -4.0f;
     public float rightLimit = 4.0f;

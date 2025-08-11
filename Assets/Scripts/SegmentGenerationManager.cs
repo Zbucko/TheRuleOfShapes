@@ -9,8 +9,8 @@ public class SegmentGenerationManager : MonoBehaviour
     [SerializeField] bool creatingSegment = false;
     [SerializeField] int segmentNum;
     [SerializeField] int randSpawn;
-    [SerializeField] bool spawnPowerUp = false;
-    [SerializeField] int powerupChance = 10;
+    //[SerializeField] bool spawnPowerUp = false;
+    [SerializeField] int powerupChance = 99;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Update()
     {
@@ -23,14 +23,21 @@ public class SegmentGenerationManager : MonoBehaviour
 
     IEnumerator SegmentGen()
     {
-        segmentNum = Random.Range(0, 12);
-        randSpawn = Random.Range(0, 100);
-        if (randSpawn <= powerupChance) spawnPowerUp = true;
-        if (spawnPowerUp)
+        segmentNum = Random.Range(0, 14);
+
+        if (segmentNum >= 9 && segmentNum < 14)
         {
-            segmentNum = Random.Range(9, 12);
-            Instantiate(segments[segmentNum], new Vector3(0, 0, zPosition), Quaternion.identity);
-            spawnPowerUp = false;
+            // segmentNum = Random.Range(9, 12);
+            randSpawn = Random.Range(0, 100);
+            if (randSpawn <= powerupChance)
+            {
+                Instantiate(segments[segmentNum], new Vector3(0, 0, zPosition), Quaternion.identity);
+            }
+            else
+            {
+                segmentNum = Random.Range(0, 9);
+                Instantiate(segments[segmentNum], new Vector3(0, 0, zPosition), Quaternion.identity);
+            }
         }
         else
         {

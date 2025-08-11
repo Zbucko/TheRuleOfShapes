@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] float speedIncreaseInterval = 5f;
     [SerializeField] float speedIncreaseAmount = 0.5f;
+    [SerializeField] UIManager uiManager;
     [SerializeField] TextMeshProUGUI highScoreText;
 
     public Canvas gameOverScreen;
@@ -19,7 +20,6 @@ public class GameManager : MonoBehaviour
     {
         FindAnyObjectByType<ShapeSwitcher>().SwitchShape(ShapeSwitcher.Shape.Cube);
         gameOverScreen.enabled = false;
-        
     }
     void Update()
     {
@@ -39,8 +39,7 @@ public class GameManager : MonoBehaviour
         else
         {
             playerMovement.enabled = false;
-            gameOverScreen.enabled = true;
-            FindAnyObjectByType<ScoreManager>().doubleScoreText.enabled = false;
+            uiManager.DisplayGameOverScreen();
             FindAnyObjectByType<SegmentGenerationManager>().enabled = false;
             CheckHighScore();
             FindAnyObjectByType<AudioManager>().GameOverMusic();
@@ -62,11 +61,11 @@ public class GameManager : MonoBehaviour
         scoreManager.NewHighScore();
         if (scoreManager.changedScore)
         {
-            highScoreText.text = "NEW HIGH SCORE: " + scoreManager.scoreText.text+"\nCongratulations!";
+            uiManager.DisplayNewHighScore();
         }
         else
         {
-            highScoreText.text = "HIGH SCORE: " + scoreManager.highScore.ToString();
+            uiManager.DisplayHighScore();
         }
     }
 
