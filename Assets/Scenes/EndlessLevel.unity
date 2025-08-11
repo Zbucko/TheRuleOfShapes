@@ -2858,8 +2858,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40277aeb6e5de5e46900dc9a33ed9150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invincibilityTimer: 0
-  doubleScoreTimer: 0
+  player: {fileID: 1546715646}
+  score: {fileID: 1168079916}
+  uimanager: {fileID: 1168079918}
+  audioManager: {fileID: 1168079917}
+  invincibilityTimer: -3
+  doubleScoreTimer: -3
   invincibilityDuration: 5
   doubleScoreDuration: 7
 --- !u!54 &419085170
@@ -6250,7 +6254,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'x2 score:'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -7880,7 +7884,7 @@ MonoBehaviour:
   creatingSegment: 0
   segmentNum: 0
   randSpawn: 0
-  powerupChance: 90
+  powerupChance: 35
 --- !u!114 &1168079915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7913,6 +7917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1546715647}
+  uiManager: {fileID: 1168079918}
   baseMultiplier: 1
   highScore: 0
   changedScore: 0
@@ -13035,7 +13040,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Invincible:'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    //Checking which button is clicked, then playing sound and executing.
     [SerializeField] AudioSource clickFX;
     public void StartGame()
     {

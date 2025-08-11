@@ -43,21 +43,21 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        //Step 1: Ask player to change to Cube.
-        tutorialMessage.text = "Press 1 to change to cube!";
-        tutorialMessage.gameObject.SetActive(true);
+        //Step 1: Ask player to change to Sphere.
+        tutorialMessage.text = "Now press 2 to change to sphere!";
 
         correctShapeChanged = false;
         yield return new WaitUntil(() => correctShapeChanged);
 
-        //Step 2: Ask player to change to Sphere.
-        tutorialMessage.text = "Great! Now press 2 to change to sphere!";
-
-        correctShapeChanged = false;
-        yield return new WaitUntil(() => correctShapeChanged);
-
-        //Step 3: Ask player to change to Pyramid.
+        //Step 2: Ask player to change to Pyramid.
         tutorialMessage.text = "Awesome! Now press 3 to change to pyramid!";
+
+        correctShapeChanged = false;
+        yield return new WaitUntil(() => correctShapeChanged);
+
+        //Step 3: Ask player to change to Cube.
+        tutorialMessage.text = "Great, now press 1 to change to cube!";
+        tutorialMessage.gameObject.SetActive(true);
 
         correctShapeChanged = false;
         yield return new WaitUntil(() => correctShapeChanged);
@@ -71,7 +71,7 @@ public class TutorialManager : MonoBehaviour
         tutorialMessage.text = "Well done! Now pass this simple level to complete the tutorial!";
 
         //Start the run.
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         tutorialMessage.gameObject.SetActive(false);
         playerMovement.enabled = true;
@@ -97,16 +97,37 @@ public class TutorialManager : MonoBehaviour
     public void EndOfTutorial()
     {
         //Display end of tutorial message.
-        tutorialMessage.text = "Well done, you have completed the tutorial. Now the real test!";
-        tutorialMessage.gameObject.SetActive(true);
+        StartCoroutine(EndMessage());
         playerMovement.enabled = false;
         endTutorialFX.Play();
-        //Return to main menu after finishing the tutorial.
-        Invoke("ReturnToMainMenu", 3);
+        
     }
 
     private void ReturnToMainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    private IEnumerator EndMessage()
+    {
+        tutorialMessage.gameObject.SetActive(true);
+        tutorialMessage.text = "There are two types of powerups in the game:";
+
+        yield return new WaitForSeconds(2f);
+
+        tutorialMessage.text = "Invincibility : grants you invincibility to collision.";
+
+        yield return new WaitForSeconds(2f);
+
+        tutorialMessage.text = "x2 score: grants you double the score for the distance.";
+
+        yield return new WaitForSeconds(3f);
+
+        tutorialMessage.text = "Well done! You have completed the tutorial. Now to the real test.";
+
+        yield return new WaitForSeconds(3f);
+
+        //Return to main menu after finishing the tutorial.
+        ReturnToMainMenu();
     }
 }

@@ -6,6 +6,7 @@ public class RotationAnimation : MonoBehaviour
 
     void Update()
     {
+        //Rotate the object.
         transform.Rotate(0, rotationSpeed, 0, Space.World);
     }
 }

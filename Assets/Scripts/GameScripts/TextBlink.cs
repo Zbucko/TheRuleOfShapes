@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class TextBlink : MonoBehaviour
 {
+    //Text that is blinking.
     [SerializeField] TMP_Text tmpText;
+    //Array of colors used for text.
     public Color[] colors = new Color[3] { Color.red, Color.blue, Color.green };
+    //Changeable interval for faster or slower blinking.
     public float blinkInterval = 0.5f;
 
     private float timer;
@@ -20,6 +23,7 @@ public class TextBlink : MonoBehaviour
 
     void Update()
     {
+        //Check every frame if timer is the same as blink iterval, then change color.
         timer += Time.deltaTime;
         if (timer >= blinkInterval)
         {

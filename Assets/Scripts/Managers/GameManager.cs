@@ -6,9 +6,14 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
+    //Reference to playermovement script.
     [SerializeField] PlayerMovement playerMovement;
+
+    //Changeable intervals for game difficulty.
     [SerializeField] float speedIncreaseInterval = 5f;
     [SerializeField] float speedIncreaseAmount = 0.5f;
+
+    //Reference to UI.
     [SerializeField] UIManager uiManager;
     [SerializeField] TextMeshProUGUI highScoreText;
 
@@ -23,6 +28,13 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        //Checking if speed can be increased every frame.
+        IncreaseSpeed();
+    }
+
+    private void IncreaseSpeed()
+    {
+        //If timer is higher than interval, increase speed by increments of 'speedIncreaseAmount'.
         timer += Time.deltaTime;
         if (timer >= speedIncreaseInterval)
         {
@@ -38,13 +50,15 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            //Game over screen appears and checks for highscore.
             playerMovement.enabled = false;
+            uiManager.HideDoubleScoreTimer();
             uiManager.DisplayGameOverScreen();
             FindAnyObjectByType<SegmentGenerationManager>().enabled = false;
             CheckHighScore();
             FindAnyObjectByType<AudioManager>().GameOverMusic();
         }
-        
+
 
     }
 
@@ -57,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     void CheckHighScore()
     {
+        //Function for checking if new highscore is achieved.
         ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
         scoreManager.NewHighScore();
         if (scoreManager.changedScore)

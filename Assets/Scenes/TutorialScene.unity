@@ -407,6 +407,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shape: {fileID: 119565526}
   audioManager: {fileID: 949383143}
+  invincibleTime: {fileID: 0}
+  timer: 0
+  isInvincible: 0
 --- !u!1 &131202715
 GameObject:
   m_ObjectHideFlags: 0
@@ -2557,6 +2560,7 @@ MonoBehaviour:
   playerMovement: {fileID: 119565529}
   speedIncreaseInterval: 5
   speedIncreaseAmount: 0.5
+  uiManager: {fileID: 0}
   highScoreText: {fileID: 0}
   gameOverScreen: {fileID: 1257319254}
   restartDelay: 1.25
@@ -2576,6 +2580,8 @@ MonoBehaviour:
   collisionFX: {fileID: 960293228}
   backgroundMusic: {fileID: 22738645}
   gameOverMusic: {fileID: 2126584156}
+  powerLostFX: {fileID: 0}
+  powerCollectFX: {fileID: 0}
 --- !u!1 &960293226
 GameObject:
   m_ObjectHideFlags: 0
@@ -2739,8 +2745,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 152}
-  m_SizeDelta: {x: 407.8046, y: 101.9512}
+  m_AnchoredPosition: {x: 0.0000085831, y: 125}
+  m_SizeDelta: {x: 424.0775, y: 187.9272}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1071817138
 MonoBehaviour:

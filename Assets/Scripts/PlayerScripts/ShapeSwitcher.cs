@@ -3,9 +3,13 @@ using UnityEngine;
 
 public class ShapeSwitcher : MonoBehaviour
 {
+    //Shapes that are used.
     public enum Shape { Cube, Sphere, Pyramid }
+
+    //Current shape of the player.
     public Shape currentShape;
 
+    //Event for changing shapes.
     public static event Action<Shape> OnShapeChanged;
 
     [SerializeField] GameObject shapeHolder;
@@ -24,15 +28,10 @@ public class ShapeSwitcher : MonoBehaviour
 
     [SerializeField] AudioManager audioManager;
 
-    void Start()
-    {
-        //SwitchShape(Shape.Cube);
-    }
-
-
     // Update is called once per frame
     void Update()
     {
+        //Check for input, then change shape.
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SwitchShape(Shape.Cube);
@@ -49,15 +48,15 @@ public class ShapeSwitcher : MonoBehaviour
 
     public void SwitchShape(Shape newShape)
     {
-       // if (currentShape == newShape) return;
-
         currentShape = newShape;
         var meshFilter = shapeHolder.GetComponent<MeshFilter>();
 
+        //Turn off all colliders before changing to new shape.
         sphereCollider.enabled = false;
         cubeCollider.enabled = false;
         pyramidCollider.enabled = false;
 
+        //Based on input, change mesh, collider and color to match shape.
         switch (newShape)
         {
             case Shape.Cube:
@@ -82,6 +81,7 @@ public class ShapeSwitcher : MonoBehaviour
 
         }
         audioManager.PlayShapeChange();
+
         //Invokes the event when shape is changed
         OnShapeChanged?.Invoke(newShape); 
     }
