@@ -90,3 +90,7 @@ Found a bug or have a cool idea? I'd love to hear from you! Open an issue or rea
 ---
 
 Ready to obey **The Rule of Shapes** and chase high scores? Let the run begin! 🏃‍♂️💨
+
+## 🎬 Gameplay Preview
+
+![Gameplay of The Rule of Shapes](assets/gameplay.gif)
