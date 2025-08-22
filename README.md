@@ -93,4 +93,4 @@ Ready to obey **The Rule of Shapes** and chase high scores? Let the run begin! ð
 
 ## ðŸŽ¬ Gameplay Preview
 
-![Gameplay of The Rule of Shapes](assets/gameplay.gif)
+![Gameplay of The Rule of Shapes](Assets/gameplay.gif)
